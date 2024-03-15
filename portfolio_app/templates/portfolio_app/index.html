@@ -5,6 +5,14 @@
 {% block content %}
 <h1>Computer Science Portfolios</h1>
 
-<h2>More to come from [and your name goes here]</h2>
+<h2> List of students with active porfolios </h2>
+    <ul class="list-group">
+        {%for s in active_student_portfolios%}
+        <li class="list-group-item">Name: {{s.name}}
+            <p><strong>Portfolio:{{s.portfolio.title}}
+            </strong></p>
+        </li>
+        {%endfor%}
+    </ul>
 
 {% endblock %}

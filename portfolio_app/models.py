@@ -19,7 +19,7 @@ class Portfolio(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length = 200)
     desc = models.CharField(max_length = 1000)
-    portfolio = models.ForeignKey(Portfolio, null=True, on_delete = models.SET_NULL)
+    portfolio = models.ForeignKey(Portfolio, on_delete = models.CASCADE, default=None)
 
     def __str__(self):
         return self.title
@@ -42,7 +42,7 @@ class Student(models.Model):
     name = models.CharField(max_length = 200)
     email = models.CharField("UCCS EMAIL", max_length = 200)
     major = models.CharField(max_length = 200, choices=MAJOR)
-    portfolio = models.ForeignKey(Portfolio, null=True, on_delete = models.SET_NULL)
+    portfolio = models.ForeignKey(Portfolio, null=True, on_delete = models.CASCADE, unique=True)
 
     
     def __str__(self):
