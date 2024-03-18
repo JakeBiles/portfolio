@@ -6,8 +6,9 @@
         <ul>
             {%for student in student_list%}
                 <li>
-                    <a href="{{student.get_absolute_url}}"> {{student.name}}</a>
+                    <a href="{{student.get_absolute_url}}" class="btn btn-secondary btn-lg"> {{student.name}}</a>
                 </li>
+                <p></p>
             {%endfor%}
         </ul>
     {%else%}
