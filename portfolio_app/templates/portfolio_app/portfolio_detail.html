@@ -1,0 +1,36 @@
+{% extends "portfolio_app/base_template.html" %}
+
+{%block content%}
+
+<!--Title-->
+<h1 style="font-size:32px">Portfolio Title: {{portfolio.title}} <a href="{%url 'update-portfolio' portfolio_id=portfolio.pk %}" class="btn btn-dark">Update Portfolio</a>  </h1>
+
+<!--Author-->
+<li style="font-size:24px" class="list-group-item"> Author: 
+    <a class="btn btn-dark btn-xs" href="{{portfolio.student_set.all.get.get_absolute_url}}" >{{portfolio.student_set.all.get}}</a>
+</li>
+
+<!--Contact info-->
+<p></p>
+<p style="font-size:20px"> Contact info: {{portfolio.contact_email}} </p>
+
+<!--If there is an about section, About-->
+{%if portfolio.about%} <p style="font-size:20px"> About: {{portfolio.about}} </p> {%endif%}
+
+<!-- Active Status-->
+<p style="font-size:20px"> Active Status: {{portfolio.is_active}} </p>
+
+<!--Projects-->
+<h1><strong>Projects</strong> <a href="{%url 'create-project' portfolio_id=portfolio.pk %}" class="btn btn-dark">Add Project</a></h1>
+<ul class="list-group">
+    {% for project in portfolio.project_set.all %}
+        <li style="font-size:20px;background-color:#FEFFF7" class="list-group-item"> Title: {{ project.title }} <p></p> Desc: {{ project.desc }}
+            <p></p>
+            <a href="{{project.get_absolute_url}}" class="btn btn-dark">View</a>
+            <a href="{%url 'update-project' project_id=project.pk  %}" class="btn btn-dark">Update Project</a> 
+            <a href="{%url 'delete-project' project_id=project.pk  %}" class="btn btn-dark">Delete Project</a> 
+        </li>
+    {% endfor %}
+</ul>
+
+{%endblock%}

@@ -1,0 +1,30 @@
+{% extends "portfolio_app/base_template.html" %}
+
+{%block content%}
+
+<!--Title-->
+<h1 style="font-size:32px"> Project Title: {{project.title}}
+    <a href="{%url 'update-project' project_id=project.pk %}" class="btn btn-dark">Update Project</a> 
+    <a href="{%url 'delete-project' project_id=project.pk %}" class="btn btn-dark">Delete Project</a> 
+</h1>
+
+<!--Author-->
+<li style="font-size:24px" class="list-group-item"> Author: 
+    <a class="btn btn-dark btn-xs" href="{{project.portfolio.student_set.all.get.get_absolute_url}}">{{project.portfolio.student_set.all.get}}</a>
+</li>
+
+<!--If there is a desc, DESC-->
+<p></p>
+{%if project.desc%} <p style="font-size:20px"> About: {{project.desc}} </p> {%endif%}
+
+
+
+<!--Portfolio-->
+<ul class="list-group">
+    <li style="font-size:20px;background-color:#FEFFF7" class="list-group-item"> <strong>Portfolio: </strong> {{project.portfolio.title}}
+        <p></p>
+        <a href="{{project.portfolio.get_absolute_url}}" class="btn btn-dark">View</a>
+    </li>
+</ul>
+
+{%endblock%}
